@@ -1,0 +1,65 @@
+version: 1
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      # We only want a macOS binary
+      - darwin
+
+archives:
+  - format: tar.gz
+    # this name template makes the OS and Arch compatible with the results of `uname`.
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+
+changelog:
+  filters:
+    exclude:
+      - "^docs:"
+  groups:
+    - title: Features
+      regexp: '^.*?feat(\([[:word:]]+\))??!?:.+$'
+      order: 0
+    - title: "Bug fixes"
+      regexp: '^.*?fix(\([[:word:]]+\))??!?:.+$'
+      order: 1
+    - title: Others
+      order: 999
+
+# brews:
+#   - name: hello-world
+#     homepage: "https://github.com/jozefcipa/go-hello-world"
+#     description: "Examle Go Binary"
+#     license: "MIT"
+
+#     url_template: "https://github.com/jozefcipa/go-hello-world/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+#     download_strategy: CurlDownloadStrategy
+
+#     commit_author:
+#       name: goreleaserbot
+#       email: bot@goreleaser.com
+#     commit_msg_template: "chore(release): brew formula update for {{ .ProjectName }} version {{ .Tag }}"
+#     repository:
+#       owner: jozefcipa
+#       name: homebrew-hello-world
+#       git:
+#         url: 'git@github.com:jozefcipa/homebrew-hello-world.git'
+#         private_key: '{{ .Env.GH_PRIVATE_KEY }}'
+#     directory: .
+
+#     # Setting this will prevent goreleaser to actually try to commit the updated
+#     # formula - instead, the formula file will be stored on the dist directory
+#     # only, leaving the responsibility of publishing it to the user.
+#     # If set to auto, the release will not be uploaded to the homebrew tap
+#     # in case there is an indicator for prerelease in the tag e.g. v1.0.0-rc1
+#     skip_upload: 'auto'
