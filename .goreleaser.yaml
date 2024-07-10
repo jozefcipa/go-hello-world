@@ -36,30 +36,30 @@ changelog:
     - title: Others
       order: 999
 
-# brews:
-#   - name: hello-world
-#     homepage: "https://github.com/jozefcipa/go-hello-world"
-#     description: "Examle Go Binary"
-#     license: "MIT"
+brews:
+  - name: hello-world
+    homepage: "https://github.com/jozefcipa/go-hello-world"
+    description: "Example Go Binary"
+    license: "MIT"
 
-#     url_template: "https://github.com/jozefcipa/go-hello-world/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
-#     download_strategy: CurlDownloadStrategy
+    url_template: "https://github.com/jozefcipa/go-hello-world/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+    download_strategy: CurlDownloadStrategy
 
-#     commit_author:
-#       name: goreleaserbot
-#       email: bot@goreleaser.com
-#     commit_msg_template: "chore(release): brew formula update for {{ .ProjectName }} version {{ .Tag }}"
-#     repository:
-#       owner: jozefcipa
-#       name: homebrew-hello-world
-#       git:
-#         url: 'git@github.com:jozefcipa/homebrew-hello-world.git'
-#         private_key: '{{ .Env.GH_PRIVATE_KEY }}'
-#     directory: .
+    commit_author:
+      name: goreleaserbot
+      email: bot@goreleaser.com
+    commit_msg_template: "chore(release): brew formula update for {{ .ProjectName }} version {{ .Tag }}"
+    repository:
+      owner: jozefcipa
+      name: homebrew-go-hello-world
+      git:
+        url: 'git@github.com:jozefcipa/homebrew-go-hello-world.git'
+        private_key: '{{ .Env.GH_PRIVATE_KEY }}'
+    directory: .
 
-#     # Setting this will prevent goreleaser to actually try to commit the updated
-#     # formula - instead, the formula file will be stored on the dist directory
-#     # only, leaving the responsibility of publishing it to the user.
-#     # If set to auto, the release will not be uploaded to the homebrew tap
-#     # in case there is an indicator for prerelease in the tag e.g. v1.0.0-rc1
-#     skip_upload: 'auto'
+    # Setting this will prevent goreleaser to actually try to commit the updated
+    # formula - instead, the formula file will be stored on the dist directory
+    # only, leaving the responsibility of publishing it to the user.
+    # If set to auto, the release will not be uploaded to the homebrew tap
+    # in case there is an indicator for prerelease in the tag e.g. v1.0.0-rc1
+    skip_upload: 'auto'
