@@ -37,7 +37,7 @@ changelog:
       order: 999
 
 brews:
-  - name: hello-world
+  - name: go-hello-world
     homepage: "https://github.com/jozefcipa/go-hello-world"
     description: "Example Go Binary"
     license: "MIT"
