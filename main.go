@@ -8,5 +8,5 @@ import (
 func main() {
 	user, _ := user.Current()
 
-	fmt.Printf("Hello %s!\n", user.Name)
+	fmt.Printf("Hello, sir %s!\n", user.Name)
 }
